@@ -1,12 +1,10 @@
-<!doctype html>
+<?php require_once('../../private/initialize.php'); ?>
 
-<html lang="en">
-  <head>
-    <title>Token Tracker</title>
-    <meta charset="utf-8">
-  </head>
+<?php $page_title = 'Token Menu'; ?>
 
-  <body>
-    <h1>Token tracker</h1>
-  </body>
-</html>
+<?php include('../../private/shared/token_header.php'); ?>
+
+<div id="content">
+</div>
+
+  <?php include('../../private/shared/token_footer.php'); ?>
