@@ -1,5 +1,5 @@
 <?php 
-    if(!isset($page_title)) { $page_title = 'Token Area'; }
+    if(!isset($page_title)) { $page_title = 'Tracker Area'; }
 ?>
 
 <!doctype html>
@@ -8,7 +8,7 @@
   <head>
     <title>Tokens - <?php echo $page_title; ?></title>
     <meta charset="utf-8">
-    <link rel="stylesheet" media="all" href="../stylesheets/tokens.css" />
+    <link rel="stylesheet" media="all" href="<?php echo url_for('/stylesheets/tracker.css'); ?>" />
   </head>
 
   <body>
@@ -18,6 +18,6 @@
 
     <nav>
       <ul>
-        <li><a href="index.php">Menu</a></li>
+        <li><a href="<?php echo url_for('/tracker/index.php'); ?>">Menu</a></li>
       </ul>
     </nav>

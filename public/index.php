@@ -7,6 +7,6 @@
   </head>
 
   <body>
-    <h1>Token tracker</h1>
+    <h1>Token tracker in development</h1>
   </body>
 </html>
