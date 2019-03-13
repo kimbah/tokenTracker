@@ -60,3 +60,74 @@ footer {
     background: #b8860b;
     color: white;
 }
+
+
+/* Actions */
+
+.actions {
+    margin-bottom: 1em;
+}
+
+
+/* Lists */
+
+table {
+    border-collapse: collapse;
+    vertical-align: top;
+}
+
+table.list {
+    width: 100%;
+}
+
+table.list tr td {
+    border: 1px solid #999999;
+}
+
+table.list tr th {
+    border: 1px solid #b8860b;
+    background: #b8860b;
+    color: white;
+    text-align: left;
+}
+
+
+/* Forms */
+
+dl {
+    clear: both;
+    overflow: hidden;
+    margin: 0.5em 0;
+}
+
+dt {
+    float: left;
+    font-weight: bold;
+    width: 125px;
+}
+
+dd {
+    float: left;
+    margin-left: 1em;
+}
+
+#operations {
+    clear: both;
+    margin: 1em 0 1em 75px;
+}
+
+
+/* Errors */
+
+.errors {
+    display: inline-block;
+    border: 2px solid red;
+    color: red;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.errors ul {
+    margin-bottom: 0;
+    padding-left: 1em;
+}
