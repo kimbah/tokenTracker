@@ -55,4 +55,29 @@
         exit;
         }
     }
+
+    function update_token($token) {
+        global $db;
+
+        $sql = "UPDATE tokens SET ";
+        $sql .= "token='" . $token['token'] . "', ";
+        $sql .= "ticker='" . $token['ticker'] . "', ";
+        $sql .= "quantity='" . $token['quantity'] . "', ";
+        $sql .= "position='" . $token['position'] . "', ";
+        $sql .= "visible='" . $token['visible'] . "' ";
+        $sql .= "WHERE id='" . $token['id'] . "' ";
+        $sql .= "LIMIT 1";
+
+        $result = mysqli_query($db, $sql);
+        // For UPDATE statements, $result is true/false
+        if($result) {
+        return true;
+        } else {
+        // UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+        }
+
+     }
 ?>
