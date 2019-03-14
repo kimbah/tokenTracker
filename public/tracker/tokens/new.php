@@ -1,13 +1,39 @@
 <?php
 
-require_once('../../../private/initialize.php'); 
+require_once('../../../private/initialize.php');
+
+if(is_post_request()) {
+
+  // Handle form values sent by new.php
+  $token = [];
+  $token['token'] = $_POST['token'] ?? '';
+  $token['ticker'] = $_POST['ticker'] ?? '';
+  $token['quantity'] = $_POST['quantity'] ?? '';
+  $token['position'] = $_POST['position'] ?? '';
+  $token['visible'] = $_POST['visible'] ?? '';
+
+  $result = insert_token($token);
+  $new_id = mysqli_insert_id($db);
+  redirect_to(url_for('/tracker/tokens/show.php?id=' . $new_id));
+
+ 
+} else {
+    $token = [];
+    $token['token'] = '';
+    $token['ticker'] = '';
+    $token['quantity'] = '';
+    $token['position'] = '';
+    $token['visible'] = '';
+
+    $token_set = find_all_tokens();
+    $token_count = mysqli_num_rows($token_set) + 1;
+    mysqli_free_result($token_set);
+}
 
 ?>
 
 <?php
-    $token_set = find_all_tokens();
-    $token_count = mysqli_num_rows($token_set) + 1;
-    mysqli_free_result($token_set);
+
 
 ?>
 
@@ -22,7 +48,7 @@ require_once('../../../private/initialize.php');
   <div class="token new">
     <h1>Create Token</h1>
 
-    <form action="<?php echo url_for('tracker/tokens/create.php'); ?>" method="post">
+    <form action="<?php echo url_for('tracker/tokens/new.php'); ?>" method="post">
       <dl>
         <dt>Token Name</dt>
         <dd><input type="text" name="token" value="" /></dd>
