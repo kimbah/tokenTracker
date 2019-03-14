@@ -2,22 +2,33 @@
 
 require_once('../../../private/initialize.php');
 
-$menu_name = '';
-$position = '';
-$visible = '';
-
 if(is_post_request()) {
 
-  // Handle form values sent by new.php
+    // Handle form values sent by new.php (single page form submission variant to tokens/new.php)
 
-  $menu_name = $_POST['menu_name'] ?? '';
-  $position = $_POST['position'] ?? '';
-  $visible = $_POST['visible'] ?? '';
+    $exchange = [];
+    $exchange['name'] = $_POST['name'] ?? '';
+    $exchange['kyc'] = $_POST['kyc'] ?? '';
+    $exchange['location'] = $_POST['location'] ?? '';
+    $exchange['positon'] = $_POST['positon'] ?? '';
+    $exchange['visible'] = $_POST['visible'] ?? '';
 
-  echo "Form parameters<br />";
-  echo "Menu name: " . $menu_name . "<br />";
-  echo "Position: " . $position . "<br />";
-  echo "Visible: " . $visible . "<br />";
+    $result = insert_exchange($exchange);
+    $new_id = mysqli_insert_id($db);
+    redirect_to(url_for('/tracker/exchanges/show.php?id=' . $new_id));
+
+} else {
+
+    $exchange = [];
+    $exchange['name'] = '';
+    $exchange['kyc'] = '';
+    $exchange['location'] = '';
+    $exchange['position'] = '';
+    $exchange['visible'] = '';
+
+    $exchange_set = find_all_exchanges();
+    $exchange_count = mysqli_num_rows($exchange_set) + 1;
+    mysqli_free_result($exchange_set);
 }
 
 ?>
@@ -29,31 +40,50 @@ if(is_post_request()) {
 
   <a class="back-link" href="<?php echo url_for('/tracker/exchanges/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="page new">
+  <div class="exchange new">
     <h1>Create Exchange</h1>
 
     <form action="<?php echo url_for('/tracker/exchanges/new.php'); ?>" method="post">
       <dl>
-        <dt>Menu Name</dt>
-        <dd><input type="text" name="menu_name" value="<?php echo h($menu_name); ?>" /></dd>
+        <dt>Exchange Name</dt>
+        <dd><input type="text" name="name" value="<?php echo $exchange['name']; ?>" /></dd>
+      </dl>
+            <dl>
+        <dt>Location</dt>
+        <dd><input type="text" name="location" value="<?php echo $exhange['location']; ?>" /></dd>
+      </dl>
+      <dl>
+      <dt>KYC</dt>
+        <dd>
+          <input type="hidden" name="kyc" value="0" />
+          <input type="checkbox" name="kyc" value="1"<?php if($exchange['kyc'] == "1") { echo " checked"; } ?> />
+        </dd>
       </dl>
       <dl>
         <dt>Position</dt>
         <dd>
           <select name="position">
-            <option value="1"<?php if($position == "1") { echo " selected"; } ?>>1</option>
+            <?php
+              for($i=1; $i <= $exchange_count; $i++) {
+                echo "<option value=\"{$i}\"";
+                if($page['position'] == $i) {
+                  echo " selected";
+                }
+                echo ">{$i}</option>";
+              }
+            ?>
           </select>
         </dd>
       </dl>
       <dl>
-        <dt>Visible</dt>
+      <dt>Visible</dt>
         <dd>
           <input type="hidden" name="visible" value="0" />
           <input type="checkbox" name="visible" value="1"<?php if($visible == "1") { echo " checked"; } ?> />
         </dd>
       </dl>
       <div id="operations">
-        <input type="submit" value="Create Page" />
+        <input type="submit" value="Create Exchange" />
       </div>
     </form>
 

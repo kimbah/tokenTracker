@@ -18,7 +18,8 @@ if(is_post_request()) {
 
  
 } else {
-  redirect_to(url_for('/tracker/tokens/new.php'));
+
+    redirect_to(url_for('/tracker/tokens/new.php'));
 }
 
 ?>

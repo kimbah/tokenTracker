@@ -26,6 +26,8 @@ if(is_post_request()) {
 } else {
     
     $token = find_token_by_id($id);
+    $token_set = find_all_tokens();
+    $token_count = mysqli_num_rows($token_set);
 }
 
 ?>
@@ -57,7 +59,15 @@ if(is_post_request()) {
         <dt>Position</dt>
         <dd>
           <select name="position">
-            <option value="1"<?php if(($token['position']) == "1") { echo " selected"; } ?>>1</option>
+                <?php
+                for($i=1; $i <= $token_count; $i++) {
+                    echo "<option value=\"{$i}\"";
+                    if($page["position"] == $i) {
+                    echo " selected";
+                    }
+                    echo ">{$i}</option>";
+                }
+                ?>
           </select>
         </dd>
       </dl>

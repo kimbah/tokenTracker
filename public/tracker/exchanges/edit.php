@@ -3,25 +3,29 @@
 require_once('../../../private/initialize.php');
 
 if(!isset($_GET['id'])) {
-  redirect_to(url_for('/staff/pages/index.php'));
+  redirect_to(url_for('/tracker/exchanges/index.php'));
 }
 $id = $_GET['id'];
-$menu_name = '';
-$position = '';
-$visible = '';
 
 if(is_post_request()) {
 
   // Handle form values sent by new.php
 
-  $menu_name = $_POST['menu_name'] ?? '';
-  $position = $_POST['position'] ?? '';
-  $visible = $_POST['visible'] ?? '';
+    $exchange = [];
+    $exchange['id'] = $id;
+    $exchange['name'] = $_POST['name'] ?? '';
+    $exchange['kyc'] = $_POST['kyc'] ?? '';
+    $exchange['location'] = $_POST['location'] ?? '';
+    $exchange['position'] = $_POST['position'] ?? '';
+    $exchange['visible'] = $_POST['visible'] ?? '';
 
-  echo "Form parameters<br />";
-  echo "Menu name: " . $menu_name . "<br />";
-  echo "Position: " . $position . "<br />";
-  echo "Visible: " . $visible . "<br />";
+    $result = update_exchange($exchange);
+    redirect_to(url_for('/tracker/exchanges/show.php?id=' . $id));
+
+} else {
+    $exchange = find_exchange_by_id($id);
+    $exchange_set = find_all_exchanges();
+    $exchange_count = mysqli_num_rows($exchange_set);
 }
 
 ?>
@@ -33,19 +37,36 @@ if(is_post_request()) {
 
   <a class="back-link" href="<?php echo url_for('/tracker/exchanges/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="page edit">
+  <div class="exchange edit">
     <h1>Edit Exchange</h1>
 
     <form action="<?php echo url_for('/tracker/exchanges/edit.php?id=' . h(u($id))); ?>" method="post">
       <dl>
         <dt>Exchange Name</dt>
-        <dd><input type="text" name="menu_name" value="<?php echo h($menu_name); ?>" /></dd>
+        <dd><input type="text" name="name" value="<?php echo h($exchange['name']); ?>" /></dd>
+      </dl>
+      <dl>
+      <dl>
+        <dt>KYC</dt>
+        <dd><input type="text" name="kyc" value="<?php echo h($exchange['kyc']); ?>" /></dd>
+      </dl>
+      <dl>
+        <dt>Location</dt>
+        <dd><input type="text" name="location" value="<?php echo h($exchange['location']); ?>" /></dd>
       </dl>
       <dl>
         <dt>Position</dt>
         <dd>
           <select name="position">
-            <option value="1"<?php if($position == "1") { echo " selected"; } ?>>1</option>
+                <?php
+                for($i=1; $i <= $exchange_count; $i++) {
+                    echo "<option value=\"{$i}\"";
+                    if($page["position"] == $i) {
+                    echo " selected";
+                    }
+                    echo ">{$i}</option>";
+                }
+                ?>
           </select>
         </dd>
       </dl>
@@ -53,11 +74,11 @@ if(is_post_request()) {
         <dt>Visible</dt>
         <dd>
           <input type="hidden" name="visible" value="0" />
-          <input type="checkbox" name="visible" value="1"<?php if($visible == "1") { echo " checked"; } ?> />
+          <input type="checkbox" name="visible" value="1"<?php if(($exchange['visible']) == "1") { echo " checked"; } ?> />
         </dd>
       </dl>
       <div id="operations">
-        <input type="submit" value="Edit Page" />
+        <input type="submit" value="Edit Exchange" />
       </div>
     </form>
 

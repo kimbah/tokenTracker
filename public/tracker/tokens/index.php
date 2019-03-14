@@ -40,7 +40,7 @@
           <td><?php echo h($token['quantity']); ?></td>
           <td><a class="action" href="<?php echo url_for('/tracker/tokens/show.php?id=' . h(u($token['id']))); ?>">View</a></td>
           <td><a class="action" href="<?php echo url_for('/tracker/tokens/edit.php?id=' . h(u($token['id']))); ?>">Edit</a></td>
-          <td><a class="action" href="">Delete</a></td>
+          <td><a class="action" href="<?php echo url_for('/tracker/tokens/delete.php?id=' . h(u($token['id']))); ?>">Delete</a></td>
     	  </tr>
       <?php } ?>
   	</table>

@@ -40,7 +40,7 @@
           <td><?php echo h($exchange['location']); ?></td>
           <td><a class="action" href="<?php echo url_for('/tracker/exchanges/show.php?id=' . h(u($exchange['id']))); ?>">View</a></td>
           <td><a class="action" href="<?php echo url_for('/tracker/exchanges/edit.php?id=' . h(u($exchange['id']))); ?>">Edit</a></td>
-          <td><a class="action" href="">Delete</a></td>
+          <td><a class="action" href="<?php echo url_for('/tracker/exchanges/delete.php?id=' . h(u($exchange['id']))); ?>">Delete</a></td>
     	  </tr>
       <?php } ?>
   	</table>
