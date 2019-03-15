@@ -20,13 +20,20 @@ if(is_post_request()) {
     $exchange['visible'] = $_POST['visible'] ?? '';
 
     $result = update_exchange($exchange);
-    redirect_to(url_for('/tracker/exchanges/show.php?id=' . $id));
+    if($result === true) {
+        redirect_to(url_for('/tracker/exchanges/show.php?id=' . $id));
+    } else {
+        $errors = $result;
+        //var_dump($errors);
+    }
 
 } else {
     $exchange = find_exchange_by_id($id);
-    $exchange_set = find_all_exchanges();
-    $exchange_count = mysqli_num_rows($exchange_set);
 }
+
+$exchange_set = find_all_exchanges();
+$exchange_count = mysqli_num_rows($exchange_set);
+mysqli_free_result($exchange_set);
 
 ?>
 
@@ -39,6 +46,8 @@ if(is_post_request()) {
 
   <div class="exchange edit">
     <h1>Edit Exchange</h1>
+
+    <?php echo display_errors($errors); ?>
 
     <form action="<?php echo url_for('/tracker/exchanges/edit.php?id=' . h(u($id))); ?>" method="post">
       <dl>

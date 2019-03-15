@@ -1,5 +1,9 @@
 <?php
 
+/*
+mysqli_query() is used rather than prepared statements. In order to ensure no sql injection, care has been taken to always use quotes and escape dynamic-data values.
+*/
+
     function find_all_tokens() {
         global $db;
         
@@ -22,8 +26,48 @@
         return $token; // returns an assoc. array
     }
 
+    function validate_token($token) {
+
+        $errors = [];
+        
+        // token
+        if(is_blank($token['token'])) {
+            $errors[] = "Name cannot be blank.";
+        }
+        if(!has_length($token['token'], ['min' => 2, 'max' => 255])) {
+            $errors[] = "Name must be between 2 and 255 characters.";
+        }
+
+        /*
+        // position
+        // Make sure we are working with an integer
+        $postion_int = (int) $token['position'];
+        if($postion_int <= 0) {
+            $errors[] = "Position must be greater than zero.";
+        }
+        if($postion_int > 999) {
+            $errors[] = "Position must be less than 999.";
+        }
+        */
+
+        // visible
+        // Make sure we are working with a string
+        $visible_str = (string) $token['visible'];
+        if(!has_inclusion_of($visible_str, ["0","1"])) {
+            $errors[] = "Visible must be true or false.";
+        }
+
+        return $errors;
+    }
+
+
     function insert_token($token) {
         global $db;
+
+        $errors = validate_token($token);
+        if(!empty($errors)) {
+            return $errors;
+        }
 
         $sql = "INSERT INTO tokens ";
         $sql .= "(token, ticker, quantity, position, visible) ";
@@ -48,6 +92,11 @@
 
     function update_token($token) {
         global $db;
+
+        $errors = validate_token($token);
+        if(!empty($errors)) {
+            return $errors;
+        }
 
         $sql = "UPDATE tokens SET ";
         $sql .= "token='" . $token['token'] . "', ";
@@ -112,8 +161,54 @@
         return $exchange; // returns an assoc. array
   }
 
+      function validate_exchange($exchange) {
+
+        $errors = [];
+        
+        // name
+        if(is_blank($exchange['name'])) {
+            $errors[] = "Name cannot be blank.";
+        }
+        if(!has_length($exchange['name'], ['min' => 2, 'max' => 255])) {
+            $errors[] = "Name must be between 2 and 255 characters.";
+        }
+        
+        /*
+        // position
+        // Make sure we are working with an integer
+        $postion_int = (int) $exchange['position'];
+        if($postion_int <= 0) {
+            $errors[] = "Position must be greater than zero.";
+        }
+        if($postion_int > 999) {
+            $errors[] = "Position must be less than 999.";
+        }
+        */
+
+        // visible
+        // Make sure we are working with a string
+        $visible_str = (string) $exchange['visible'];
+        if(!has_inclusion_of($visible_str, ["0","1"])) {
+            $errors[] = "Visible must be true or false.";
+        }
+
+        // location
+        if(is_blank($exchange['location'])) {
+        $errors[] = "Location cannot be blank.";
+        }
+
+        
+
+        return $errors;
+    }
+
     function insert_exchange($exchange) {
         global $db;
+        
+        $errors = validate_exchange($exchange);
+        if(!empty($errors)) {
+        return $errors;
+        }
 
         $sql = "INSERT INTO exchanges ";
         $sql .= "(name, kyc, position, visible, location) ";
@@ -138,6 +233,11 @@
 
     function update_exchange($exchange) {
         global $db;
+        
+        $errors = validate_exchange($exchange);
+        if(!empty($errors)) {
+        return $errors;
+        }
 
         $sql = "UPDATE exchanges SET ";
         $sql .= "name='" . $exchange['name'] . "', ";

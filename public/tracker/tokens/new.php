@@ -13,30 +13,29 @@ if(is_post_request()) {
   $token['visible'] = $_POST['visible'] ?? '';
 
   $result = insert_token($token);
-  $new_id = mysqli_insert_id($db);
-  redirect_to(url_for('/tracker/tokens/show.php?id=' . $new_id));
+  if($result === true) {
+      $new_id = mysqli_insert_id($db);
+      redirect_to(url_for('/tracker/tokens/show.php?id=' . $new_id));
+  } else {
+      $errors = $result;
+  }
 
  
 } else {
+    // display the blank form
     $token = [];
     $token['token'] = '';
     $token['ticker'] = '';
     $token['quantity'] = '';
     $token['position'] = '';
     $token['visible'] = '';
-
-    $token_set = find_all_tokens();
-    $token_count = mysqli_num_rows($token_set) + 1;
-    mysqli_free_result($token_set);
 }
 
+$token_set = find_all_tokens();
+$token_count = mysqli_num_rows($token_set) + 1;
+mysqli_free_result($token_set);
+
 ?>
-
-<?php
-
-
-?>
-
 
 <?php $page_title = 'Create Token'; ?>
 <?php include(SHARED_PATH . '/tracker_header.php'); ?>
@@ -47,6 +46,8 @@ if(is_post_request()) {
 
   <div class="token new">
     <h1>Create Token</h1>
+
+    <?php echo display_errors($errors) ?>
 
     <form action="<?php echo url_for('tracker/tokens/new.php'); ?>" method="post">
       <dl>

@@ -14,22 +14,26 @@ if(is_post_request()) {
     $exchange['visible'] = $_POST['visible'] ?? '';
 
     $result = insert_exchange($exchange);
-    $new_id = mysqli_insert_id($db);
-    redirect_to(url_for('/tracker/exchanges/show.php?id=' . $new_id));
+    if($result === true) {
+        $new_id = mysqli_insert_id($db);
+        redirect_to(url_for('/tracker/exchanges/show.php?id=' . $new_id));
+    } else {
+        $errors = $result;
+    }
 
 } else {
-
+    // display the blank form
     $exchange = [];
     $exchange['name'] = '';
     $exchange['kyc'] = '';
     $exchange['location'] = '';
     $exchange['position'] = '';
     $exchange['visible'] = '';
-
-    $exchange_set = find_all_exchanges();
-    $exchange_count = mysqli_num_rows($exchange_set) + 1;
-    mysqli_free_result($exchange_set);
 }
+
+$exchange_set = find_all_exchanges();
+$exchange_count = mysqli_num_rows($exchange_set) + 1;
+mysqli_free_result($exchange_set);
 
 ?>
 
@@ -42,6 +46,8 @@ if(is_post_request()) {
 
   <div class="exchange new">
     <h1>Create Exchange</h1>
+
+    <?php echo display_errors($errors) ?>
 
     <form action="<?php echo url_for('/tracker/exchanges/new.php'); ?>" method="post">
       <dl>

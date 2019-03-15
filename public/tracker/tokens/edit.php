@@ -21,14 +21,21 @@ if(is_post_request()) {
     $token['visible'] = $_POST['visible'] ?? '';
 
     $result = update_token($token);
-    redirect_to(url_for('/tracker/tokens/show.php?id=' . $id));
+    if($result === true) {
+        redirect_to(url_for('/tracker/tokens/show.php?id=' . $id));
+    } else {
+        $errors = $result;
+        //var_dump($errors);
+    }
     
 } else {
     
     $token = find_token_by_id($id);
-    $token_set = find_all_tokens();
-    $token_count = mysqli_num_rows($token_set);
 }
+
+$token_set = find_all_tokens();
+$token_count = mysqli_num_rows($token_set);
+mysqli_free_result($token_set);
 
 ?>
 
@@ -41,6 +48,8 @@ if(is_post_request()) {
 
   <div class="token edit">
     <h1>Edit Token</h1>
+
+    <?php echo display_errors($errors); ?>
 
     <form action="<?php echo url_for('/tracker/tokens/edit.php?id=' . h(u($id))); ?>" method="post">
       <dl>
