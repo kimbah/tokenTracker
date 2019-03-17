@@ -8,6 +8,7 @@
   <head>
     <title>Tokens - <?php echo h($page_title); ?></title>
     <meta charset="utf-8">
+    <link rel="stylesheet" media="all" href="<?php echo url_for('/stylesheets/style.css'); ?>" />
     <link rel="stylesheet" media="all" href="<?php echo url_for('/stylesheets/tracker.css'); ?>" />
 
   <body>

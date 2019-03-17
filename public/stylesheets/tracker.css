@@ -61,6 +61,7 @@ nav ul li {
 
 #main-menu h2 {
     font-size: 3em;
+    color: #FFF;
     text-align: center;
 }
 
@@ -114,7 +115,7 @@ table.list tr td {
 
 table.list tr th {
     border: 1px solid rgb(86, 161, 190);
-    background: ;
+    background: rgb(86, 161, 190);
     color: white;
     text-align: left;
 }
