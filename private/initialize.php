@@ -1,4 +1,7 @@
 <?php
+  ob_start(); // output buffering is turned on
+
+  session_start(); // turn on sessions
 
 // Assign file paths to PHP constants
 // __FILE__ returns the current path to this file
@@ -26,6 +29,7 @@ require_once('validation_functions.php');
 
 // Create database connection to any page which requiring initialize.php
 $db = db_connect();
+
 $errors = [];
 
 ?>

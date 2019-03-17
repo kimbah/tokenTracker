@@ -1,12 +1,22 @@
-<!doctype html>
+<?php
+    session_start();
 
-<html lang="en">
-  <head>
-    <title>Token Tracker</title>
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
     <meta charset="utf-8">
-  </head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home Page</title>
+</head>
+<body>
+    
+    <a href="logout.php">LOGOUT</a>
 
-  <body>
-    <h1>Token tracker in development</h1>
-  </body>
+    <h1> Welcome <?php echo $_SESSION['username'] ?></h1>
+
+    <a href="tracker/index.php">Go to tracker</a>
+</body>
 </html>

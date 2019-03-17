@@ -18,6 +18,7 @@
 
     <nav>
       <ul>
+        <li><a href="<?php echo url_for('index.php'); ?>">Home</a></li>
         <li><a href="<?php echo url_for('/tracker/index.php'); ?>">Menu</a></li>
       </ul>
     </nav>
