@@ -10,9 +10,9 @@ mysqli_select_db($con, 'userregistration');
 $name = $_POST['user'];
 $pass = $_POST['password'];
 
-$s = "SELECT * FROM usertable WHERE name = '$name'";
+$sql = "SELECT * FROM usertable WHERE name = '$name'";
 
-$result = mysqli_query($con, $s);
+$result = mysqli_query($con, $sql);
 
 $num = mysqli_num_rows($result);
 

@@ -4,9 +4,16 @@ body {
     background-position: center;
 }
 
-h1 {
-    font-size: 5em;
+.main-menu h1 {
+    font-size: 7em;
     color: #fff;
+    text-align: center;
+}
+
+#content h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 3em;
 }
 
 a {
@@ -16,6 +23,27 @@ a {
     text-decoration: none;
     border-radius: 10px;
     font-size: 1.4em;
+}
+
+li > a {
+    background-color: rgb(86, 161, 190);
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 2em;
+}
+
+.main-menu > a {
+    background-color: rgb(86, 161, 190);
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 2em;
+    display: table;
+    margin: 0 auto;
+    margin-bottom: 50px;
 }
 
 .login-box {
@@ -30,7 +58,7 @@ a {
 }
 
 .login-right {
-    background: rgba(211, 211, 211, 0.5);
+    background: rgba(91, 163, 154, 0.5);
     padding: 30px;
 }
 
@@ -40,12 +68,6 @@ a {
 
 .form-group > label {
     padding-right: 20px;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: rgba(87, 165, 189, 0.5);
-    font-size: 1.3em;
 }
 
 .login-box h2 {

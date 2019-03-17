@@ -53,19 +53,19 @@ mysqli_free_result($token_set);
 
     <form action="<?php echo url_for('/tracker/tokens/edit.php?id=' . h(u($id))); ?>" method="post">
       <dl>
-        <dt>Token Name</dt>
+        <dt>Name:</dt>
         <dd><input type="text" name="token" value="<?php echo h($token['token']); ?>" /></dd>
       </dl>
       <dl>
-        <dt>Ticker</dt>
+        <dt>Ticker:</dt>
         <dd><input type="text" name="ticker" value="<?php echo h($token['ticker']); ?>" /></dd>
       </dl>
       </dl>
-        <dt>Quantity</dt>
+        <dt>Quantity:</dt>
         <dd><input type="number" name="quantity" value="<?php echo h($token['quantity']); ?>" /></dd>
       </dl>
       <dl>
-        <dt>Position</dt>
+        <dt>Position:</dt>
         <dd>
           <select name="position">
                 <?php
@@ -81,7 +81,7 @@ mysqli_free_result($token_set);
         </dd>
       </dl>
       <dl>
-        <dt>Visible</dt>
+        <dt>Visible:</dt>
         <dd>
           <input type="hidden" name="visible" value="0" />
           <input type="checkbox" name="visible" value="1"<?php if(($token['visible']) == "1") { echo " checked"; } ?> />

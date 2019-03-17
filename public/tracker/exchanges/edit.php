@@ -51,20 +51,20 @@ mysqli_free_result($exchange_set);
 
     <form action="<?php echo url_for('/tracker/exchanges/edit.php?id=' . h(u($id))); ?>" method="post">
       <dl>
-        <dt>Exchange Name</dt>
+        <dt>Name:</dt>
         <dd><input type="text" name="name" value="<?php echo h($exchange['name']); ?>" /></dd>
       </dl>
       <dl>
       <dl>
-        <dt>KYC</dt>
+        <dt>KYC:</dt>
         <dd><input type="text" name="kyc" value="<?php echo h($exchange['kyc']); ?>" /></dd>
       </dl>
       <dl>
-        <dt>Location</dt>
+        <dt>Location:</dt>
         <dd><input type="text" name="location" value="<?php echo h($exchange['location']); ?>" /></dd>
       </dl>
       <dl>
-        <dt>Position</dt>
+        <dt>Position:</dt>
         <dd>
           <select name="position">
                 <?php
@@ -80,7 +80,7 @@ mysqli_free_result($exchange_set);
         </dd>
       </dl>
       <dl>
-        <dt>Visible</dt>
+        <dt>Visible:</dt>
         <dd>
           <input type="hidden" name="visible" value="0" />
           <input type="checkbox" name="visible" value="1"<?php if(($exchange['visible']) == "1") { echo " checked"; } ?> />

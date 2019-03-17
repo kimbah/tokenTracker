@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!isset($_SESSION['username'])) {
+        header('location:login.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -15,11 +18,11 @@
 </head>
 <body>
      
-    <h1> Welcome <?php echo $_SESSION['username'] ?></h1>
     <div class="main-menu">
-        <a href="login.php">Login in to access tracker</a>
+        <h1> Welcome <?php echo $_SESSION['username'] ?></h1>
+        <a href="login.php">Login in to access tokens and exchanges</a>
 
-        <a href="logout.php">LOGOUT</a>
+        <a href="logout.php">Logout</a>
     </div>
 </body>
 </html>

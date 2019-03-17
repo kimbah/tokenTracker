@@ -13,7 +13,7 @@
 
   <body>
     <header>
-      <h1>Token Tracker</h1>
+      <h1>Token and Exchange Tracker</h1>
     </header>
 
     <nav>

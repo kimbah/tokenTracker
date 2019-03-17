@@ -16,7 +16,7 @@ $exchange = find_exchange_by_id($id);
   <a class="back-link" href="<?php echo url_for('/tracker/exchanges/index.php'); ?>">&laquo; Back to List</a>
 
   <div class="exchange show">
-    <h1>Token: <?php echo h($exchange['name']); ?></h1>
+    <h1>Exchange: <?php echo h($exchange['name']); ?></h1>
 
     <div class="attributes">
       <dl>
