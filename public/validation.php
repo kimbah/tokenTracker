@@ -17,7 +17,7 @@ $num = mysqli_num_rows($result);
 
 if($num == 1) {
     $SESSION['username'] = $name;
-    header('location:index.php');
+    header('location:tracker/index.php');
 } else {
     header('location:login.php');
 }

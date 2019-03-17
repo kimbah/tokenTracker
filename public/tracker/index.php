@@ -8,7 +8,7 @@
     <div id="main-menu">
         <h2>Main Menu</h2>
         <ul>
-            <li><a href=<?php echo url_for('tracker/tokens/index.php'); ?>>Tokens</a></li>
+            <li><a href=<?php echo url_for('tracker/tokens/index.php'); ?> class="btn btn-primary" role="button">Tokens</a></li>
             <li><a href=<?php echo url_for('tracker/exchanges/index.php'); ?>>Exchanges</a></li>
         </ul>
     </div>

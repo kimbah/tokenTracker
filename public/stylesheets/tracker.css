@@ -4,18 +4,31 @@ html {
 }
 
 body {
+    background: linear-gradient(rgba(0, 0, 50, 0.5), rgba(0, 0, 50, 0.5)), url(image.jpg);
+    background-size: cover;
+    background-position: center;
     height: 980px;
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
+a {
+    background-color: rgb(86, 161, 190);
+    color: white;
+    padding: 2px 2px;
+    text-decoration: none !important;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 1.4em;
+}
+
 header {
     width: 980px;
     height: 40px;
-    margin: 0 0 10px 0;
+    margin: 0 0 40px 0;
     padding: 0;
-    background: #b8860b;
+    background: #5b5dcc;
     color: white;
 }
 
@@ -46,10 +59,23 @@ nav ul li {
     margin-right: 1em;
 }
 
+#main-menu h2 {
+    font-size: 3em;
+    text-align: center;
+}
+
+ul li {
+    list-style: none;
+}
+
 #content {
     width: 920px;
     min-height: 500px;
     padding: 0 30px;
+}
+
+#content li a {
+    margin-bottom: 30px;
 }
 
 footer {
@@ -57,7 +83,7 @@ footer {
     height: 20px;
     margin: 0 0 10px 0;
     padding: 10px 20px;
-    background: #b8860b;
+    background: #5b5dcc;
     color: white;
 }
 
@@ -82,11 +108,13 @@ table.list {
 
 table.list tr td {
     border: 1px solid #999999;
+    font-size: 1.4em;
+    color: #FFF;
 }
 
 table.list tr th {
-    border: 1px solid #b8860b;
-    background: #b8860b;
+    border: 1px solid rgb(86, 161, 190);
+    background: ;
     color: white;
     text-align: left;
 }
@@ -114,6 +142,14 @@ dd {
 #operations {
     clear: both;
     margin: 1em 0 1em 75px;
+}
+
+form input[type=submit] {
+    background: rgb(86, 161, 190);
+    font-size: 1.4em;
+    color: #FFF;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 
