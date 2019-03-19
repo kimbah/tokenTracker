@@ -69,7 +69,7 @@ mysqli_free_result($token_set);
             <?php
               for($i=1; $i <= $token_count; $i++) {
                 echo "<option value=\"{$i}\"";
-                if($page["position"] == $i) {
+                if($page['position'] == $i) {
                   echo " selected";
                 }
                 echo ">{$i}</option>";

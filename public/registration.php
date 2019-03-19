@@ -19,7 +19,7 @@ $num = mysqli_num_rows($result);
 if($num == 1) {
     echo "username Already Taken";
 } else {
-    $reg = " INSERT INTO  usertable(name, password) VALUES('$name', '$pass')";
+    $reg = "INSERT INTO  usertable(name, password) VALUES('$name', '$pass')";
     mysqli_query($con, $reg);
     echo "Registration successfull";
 }

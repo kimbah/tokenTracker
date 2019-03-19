@@ -4,7 +4,7 @@ require_once('../../../private/initialize.php');
 
 if(is_post_request()) {
 
-    // Handle form values sent by new.php (single page form submission variant to tokens/new.php)
+    // Handle form values sent by new.php
 
     $exchange = [];
     $exchange['name'] = $_POST['name'] ?? '';
