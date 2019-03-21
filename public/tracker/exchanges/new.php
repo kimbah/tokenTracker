@@ -10,7 +10,7 @@ if(is_post_request()) {
     $exchange['name'] = $_POST['name'] ?? '';
     $exchange['kyc'] = $_POST['kyc'] ?? '';
     $exchange['location'] = $_POST['location'] ?? '';
-    $exchange['positon'] = $_POST['positon'] ?? '';
+    $exchange['position'] = $_POST['position'] ?? '';
     $exchange['visible'] = $_POST['visible'] ?? '';
 
     $result = insert_exchange($exchange);
